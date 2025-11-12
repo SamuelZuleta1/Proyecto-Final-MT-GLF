@@ -40,9 +40,11 @@ Estado inicial: q₀
 Estado de aceptación: {q₄}
 
 Tabla de transiciones
+
 <img width="490" height="285" alt="image" src="https://github.com/user-attachments/assets/351a68c0-9ed0-4a6a-be1a-31df21373a76" />
 
 Diagrama de transiciones
+
 <img width="543" height="390" alt="image" src="https://github.com/user-attachments/assets/ff6dbe73-0d81-4281-95ca-d1f72f5e15f0" />
 
 # Máquina de Turing 
@@ -73,6 +75,7 @@ Estado de aceptación:q4
 Estado de rechazo: qx​.
 
 Tabla de transiciones 
+
 <img width="781" height="639" alt="image" src="https://github.com/user-attachments/assets/f2c8ef66-6b38-4c93-b35d-02f5103bab33" />
 
 Observaciones:
@@ -90,6 +93,7 @@ Intuición del comportamiento:
 Todas las transiciones que producen aceptación o rechazo hacen move = N (no mover) porque la máquina para inmediatamente.
 
 Diagrama de transición
+
 <img width="570" height="586" alt="image" src="https://github.com/user-attachments/assets/9ff13d82-710a-4857-96ac-c022c39a54d3" />
 
 # URL del proyecto final de la MT:

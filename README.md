@@ -12,13 +12,12 @@
 - Samuel Zuleta Castañeda.
 - Victor Manuel López Henao.
 - Ivanna Ramírez Morales.
-- 
+
 # Presentado a:
 Felipe Gutierrez Isaza 
 
-# Fecha y lugar 
-28/11/2025 
-Pereira, Risaralda
+# Lugar y fecha
+Pereira, Risaralda. 28/11/2025 
 
 # Descripción del lenguaje 
 

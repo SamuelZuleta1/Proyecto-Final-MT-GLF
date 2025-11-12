@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Máquina de Turing</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Simulador de Máquina de Turing</h1>
+        
+        <!-- Cinta de la Máquina de Turing -->
+        <div class="tape-container">
+            <h2>Cinta</h2>
+            <div id="tape" class="tape"></div>
+        </div>
+
+        <!-- Controles -->
+        <div class="controls">
+            <h2>Controles</h2>
+            <button id="start-btn">Iniciar</button>
+            <button id="step-btn">Paso a Paso</button>
+            <button id="reset-btn">Reiniciar</button>
+            <button id="stop-btn">Detener</button>
+        </div>
+
+        <!-- Configuración de la entrada -->
+        <div class="input-section">
+            <h2>Entrada</h2>
+            <label for="tape-input">Cadena de entrada:</label>
+            <input type="text" id="tape-input" placeholder="Ejemplo: 0011">
+        </div>
+
+        <!-- Tabla de transiciones -->
+        <div class="transitions-table">
+            <h2>Tabla de Transiciones</h2>
+            <table id="rules-table">
+                <thead>
+                    <tr>
+                        <th>Estado Actual</th>
+                        <th>Símbolo Leído</th>
+                        <th>Nuevo Estado</th>
+                        <th>Símbolo a Escribir</th>
+                        <th>Movimiento</th>
+                    </tr>
+                </thead>
+                <tbody id="rules-body">
+                    <!-- Las reglas se cargarán dinámicamente -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Estado de la máquina -->
+        <div class="machine-state">
+            <h2>Estado de la Máquina</h2>
+            <p>Estado actual: <span id="current-state">q0</span></p>
+            <p>Posición del cabezal: <span id="head-position">0</span></p>
+            <p>Estado de ejecución: <span id="execution-status">Detenida</span></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

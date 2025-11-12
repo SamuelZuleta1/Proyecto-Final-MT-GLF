@@ -7,4 +7,4 @@
 - Emilio Muñoz Arenas.
 - Samuel Zuleta Castañeda.
 - Victor Manuel López Henao.
-- Ivanna Ramírez  
+- Ivanna Ramírez Morales.

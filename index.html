@@ -1,120 +1,36 @@
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SIMULADOR DE MÁQUINA DE TURING</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <title>Simulador de Máquina de Turing — \d{4}</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <div class="container nav-container">
-      <a href="#inicio" class="logo">
-        <img src="logoUTP.png" alt="Logo UTP">
-        <img src="logoISC.png" alt="logo ISC">
-      </a>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="#inicio">Inicio</a></li>
-          <li><a href="#contacto" class="cta-nav">Contacto</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
 
-  <!-- Hero con fondo degradado -->
-  <section id="inicio" class="hero">
-    <div class="overlay"></div>
-    <div class="container hero-content">
-      <h1>Impulsa tu negocio con procesos estratégicos</h1>
-      <p>Mentágora te acompaña para que tu organización crezca de forma sostenible y eficiente.</p>
-      <a href="#contacto" class="btn-primary">Solicita tu consulta</a>
-    </div>
-  </section>
+    <h1>Simulador de Máquina de Turing — AFD para \d{4}</h1>
 
-  <!-- Servicios con glass cards -->
-  <section id="servicios" class="section">
-    <div class="container">
-      <h2>Servicios</h2>
-      <div class="cards">
-        <div class="card glass">
-          <i class="fas fa-chart-line icon"></i>
-          <h3>Diagnóstico Estratégico</h3>
-          <p>Analizamos tu negocio para detectar oportunidades y optimizar procesos.</p>
-        </div>
-        <div class="card glass">
-          <i class="fas fa-lightbulb icon"></i>
-          <h3>Planificación & Estrategia</h3>
-          <p>Creamos planes estratégicos adaptados a tus objetivos.</p>
-        </div>
-        <div class="card glass">
-          <i class="fas fa-cogs icon"></i>
-          <h3>Implementación</h3>
-          <p>Acompañamos en la ejecución de cada paso para lograr resultados.</p>
-        </div>
-      </div>
+    <div class="input-area">
+        <input type="text" id="inputString" placeholder="Escribe una cadena (ej: 1234)">
+        <button id="loadBtn">Cargar Cinta</button>
     </div>
-  </section>
 
-  <!-- Beneficios -->
-  <section id="beneficios" class="section alt">
-    <div class="container">
-      <h2>Beneficios</h2>
-      <ul class="benefits">
-        <li>Optimización de recursos y procesos.</li>
-        <li>Mayor claridad en la toma de decisiones.</li>
-        <li>Crecimiento sostenible y rentable.</li>
-        <li>Mejor alineación del equipo con la estrategia.</li>
-      </ul>
-      <a href="#contacto" class="btn-secondary">Quiero estos beneficios</a>
+    <div class="machine">
+        <h2>Cinta</h2>
+        <div id="tape" class="tape"></div>
+        <div id="headPosition" class="head"></div>
     </div>
-  </section>
 
-  <!-- Casos de Éxito -->
-  <section id="casos" class="section">
-    <div class="container">
-      <h2>Casos de Éxito</h2>
-      <div class="cases">
-        <div class="case glass">
-          <h3>Empresa A</h3>
-          <p>Incrementó sus ventas en un 40% tras nuestra consultoría.</p>
-        </div>
-        <div class="case glass">
-          <h3>Empresa B</h3>
-          <p>Reducimos costos operativos en un 25% optimizando procesos.</p>
-        </div>
-      </div>
-      <a href="#contacto" class="btn-secondary">Sé nuestro próximo caso de éxito</a>
+    <div class="controls">
+        <button id="stepBtn">Paso</button>
+        <button id="runBtn">Ejecutar</button>
+        <button id="resetBtn">Reiniciar</button>
     </div>
-  </section>
 
-  <!-- Contacto -->
-  <section id="contacto" class="section alt">
-    <div class="container">
-      <h2>Contacto</h2>
-      <form class="contact-form glass">
-        <input type="text" placeholder="Nombre" required>
-        <input type="email" placeholder="Correo electrónico" required>
-        <textarea placeholder="Mensaje" rows="5" required></textarea>
-        <button type="submit" class="btn-primary">Enviar</button>
-      </form>
+    <div class="status">
+        <p><strong>Estado actual:</strong> <span id="currentState">q0</span></p>
+        <p><strong>Resultado:</strong> <span id="result">—</span></p>
     </div>
-  </section>
 
-  <footer>
-    <div class="container footer-content">
-      <p>&copy; 2025 Mentágora - Procesos Estratégicos</p>
-      <div class="social-icons">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-      </div>
-    </div>
-  </footer>
+    <script src="script.js"></script>
 </body>
 </html>

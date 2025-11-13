@@ -7,7 +7,7 @@
 # Integrantes del Grupo:
 
 - Santiago Giraldo Castrillón.
-- Nicolas Estiven Valencia Asencio.
+- Nicolás Estiven Valencia Ascencio.
 - Emilio Muñoz Arenas.
 - Samuel Zuleta Castañeda.
 - Victor Manuel López Henao.
@@ -56,39 +56,36 @@ Para emular el comportamiento del AFD anterior, se construye una Máquina de Tur
 Definición Formal:
 Q={q0​,q1​,q2​,q3​,q4​,qx​}
 
-q_0 = estado inicial
+q0 = estado inicial
 
-q_1,q_2,q_3,q_4 = conteo de dígitos leídos (q4 = 4 dígitos leídos y estado aceptador de paro)
+q1,q2,q3,q4 = conteo de dígitos leídos (q4 = 4 dígitos leídos y estado aceptador de paro)
 
-q_x = estado de rechazo (parada)
+qx = estado de rechazo (parada)
 
-Nota: q_4 y q_x son estados de paro (la máquina se detiene cuando entra en ellos por la regla que sigue).
+Estado de aceptación:q4
+
+Nota: q4 y qx son estados de paro (la máquina se detiene cuando entra en ellos por la regla que sigue).
 
 Σ={0,1,2,3,4,5,6,7,8,9}
 
 Γ={0,1,2,3,4,5,6,7,8,9,_}
-
-q0​= estado inicial.
-
-Estado de aceptación:q4
-
-Estado de rechazo: qx​.
 
 Tabla de transiciones 
 
 <img width="780" height="526" alt="image" src="https://github.com/user-attachments/assets/da452091-4139-44d4-b559-a9a26bca79ad" />
 
 Observaciones:
-- En q4 si se encuentra un quinto dígito la MT entra en q_x y para inmediatamente (move = N), porque no queremos consumir más ni mover hacia la derecha antes de declarar el rechazo.
-- En q0..q3, encontrar _ indica que la cadena terminó demasiado pronto → transición a q_x y paro.
-- Cualquier otro (no dígito) provoca rechazo inmediato (q_x) y paro.
+
+- En q4 si se encuentra un quinto dígito la MT entra en qx y para inmediatamente (move = N), porque no queremos consumir más ni mover hacia la derecha antes de declarar el rechazo.
+- En q0..q3, encontrar _ indica que la cadena terminó demasiado pronto → transición a qx y paro.
+- Cualquier otro (no dígito) provoca rechazo inmediato (qx) y paro.
 
 Intuición del comportamiento: 
 - La MT recorre la cinta de izquierda a derecha (solo R) mientras cuenta dígitos.
-- Si la cinta termina (encuentra _) antes de leer 4 dígitos → entra en q_x (rechazo) y para.
-- Si alcanza 4 dígitos y luego encuentra _ → se queda en q_4 y acepta (paro).
-- Si tras 4 dígitos aparece un quinto dígito → la MT entra en q_x y rechaza (paro).
-- Si aparece cualquier símbolo no dígito (otro carácter) en cualquier estado → la MT entra en q_x y rechaza (paro).
+- Si la cinta termina (encuentra  "_") antes de leer 4 dígitos → entra en qx (rechazo) y para.
+- Si alcanza 4 dígitos y luego encuentra "_" → se queda en q_4 y acepta (paro).
+- Si tras 4 dígitos aparece un quinto dígito → la MT entra en qx y rechaza (paro).
+- Si aparece cualquier símbolo no dígito (otro carácter) en cualquier estado → la MT entra en qx y rechaza (paro).
 
 Todas las transiciones que producen aceptación o rechazo hacen move = N (no mover) porque la máquina para inmediatamente.
 

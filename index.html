@@ -2,35 +2,33 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Simulador de Máquina de Turing — \d{4}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Máquina de Turing — AFD para \\d{4}</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h1>Simulador de Máquina de Turing — AFD para \d{4}</h1>
+<h1>Simulador de Máquina de Turing — AFD para \\d{4}</h1>
 
-    <div class="input-area">
-        <input type="text" id="inputString" placeholder="Escribe una cadena (ej: 1234)">
-        <button id="loadBtn">Cargar Cinta</button>
-    </div>
+<div class="container">
 
-    <div class="machine">
-        <h2>Cinta</h2>
-        <div id="tape" class="tape"></div>
-        <div id="headPosition" class="head"></div>
-    </div>
+    <input type="text" id="inputString" placeholder="Ingresa una cadena (ej: 1234)">
+    <button id="loadButton">Cargar Cinta</button>
+
+    <h2>Cinta</h2>
+    <div id="tape" class="tape"></div>
 
     <div class="controls">
-        <button id="stepBtn">Paso</button>
-        <button id="runBtn">Ejecutar</button>
-        <button id="resetBtn">Reiniciar</button>
+        <button id="stepButton">Paso</button>
+        <button id="runButton">Ejecutar</button>
+        <button id="resetButton">Reiniciar</button>
     </div>
 
-    <div class="status">
-        <p><strong>Estado actual:</strong> <span id="currentState">q0</span></p>
-        <p><strong>Resultado:</strong> <span id="result">—</span></p>
-    </div>
+    <p><strong>Estado actual:</strong> <span id="currentState">q0</span></p>
+    <p><strong>Resultado:</strong> <span id="result">—</span></p>
 
-    <script src="script.js"></script>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>

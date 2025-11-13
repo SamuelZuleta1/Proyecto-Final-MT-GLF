@@ -1,189 +1,145 @@
-// ===============================
-// CONFIGURACIÓN DE LA MT
-// ===============================
-
-// Estados válidos
-const startState = "q0";
-const acceptState = "q4";
-const rejectState = "qx";
-
-// Tabla de transición de la MT: (leer → escribir, mover, siguiente estado)
-const transitionFunction = {
-    q0: {
-        "0": ["0", "R", "q1"],
-        "1": ["1", "R", "q1"],
-        "2": ["2", "R", "q1"],
-        "3": ["3", "R", "q1"],
-        "4": ["4", "R", "q1"],
-        "5": ["5", "R", "q1"],
-        "6": ["6", "R", "q1"],
-        "7": ["7", "R", "q1"],
-        "8": ["8", "R", "q1"],
-        "9": ["9", "R", "q1"],
-        "_": ["_", "N", rejectState]
-    },
-    q1: {
-        "0": ["0", "R", "q2"],
-        "1": ["1", "R", "q2"],
-        "2": ["2", "R", "q2"],
-        "3": ["3", "R", "q2"],
-        "4": ["4", "R", "q2"],
-        "5": ["5", "R", "q2"],
-        "6": ["6", "R", "q2"],
-        "7": ["7", "R", "q2"],
-        "8": ["8", "R", "q2"],
-        "9": ["9", "R", "q2"],
-        "_": ["_", "N", rejectState]
-    },
-    q2: {
-        "0": ["0", "R", "q3"],
-        "1": ["1", "R", "q3"],
-        "2": ["2", "R", "q3"],
-        "3": ["3", "R", "q3"],
-        "4": ["4", "R", "q3"],
-        "5": ["5", "R", "q3"],
-        "6": ["6", "R", "q3"],
-        "7": ["7", "R", "q3"],
-        "8": ["8", "R", "q3"],
-        "9": ["9", "R", "q3"],
-        "_": ["_", "N", rejectState]
-    },
-    q3: {
-        "0": ["0", "R", "q4"],
-        "1": ["1", "R", "q4"],
-        "2": ["2", "R", "q4"],
-        "3": ["3", "R", "q4"],
-        "4": ["4", "R", "q4"],
-        "5": ["5", "R", "q4"],
-        "6": ["6", "R", "q4"],
-        "7": ["7", "R", "q4"],
-        "8": ["8", "R", "q4"],
-        "9": ["9", "R", "q4"],
-        "_": ["_", "N", rejectState]
-    },
-    q4: {
-        "_": ["_", "N", acceptState],
-        "0": ["0", "N", rejectState],
-        "1": ["1", "N", rejectState],
-        "2": ["2", "N", rejectState],
-        "3": ["3", "N", rejectState],
-        "4": ["4", "N", rejectState],
-        "5": ["5", "N", rejectState],
-        "6": ["6", "N", rejectState],
-        "7": ["7", "N", rejectState],
-        "8": ["8", "N", rejectState],
-        "9": ["9", "N", rejectState]
-    }
-};
-
-// ===============================
-// VARIABLES GLOBALES (Cinta, Cabezal, Estado)
-// ===============================
+// ---------------------------
+// DEFINICIÓN DE LA MT
+// ---------------------------
 
 let tape = [];
 let head = 0;
-let currentState = startState;
-let running = false;
+let currentState = "q0";
+let finished = false;
 
-// ===============================
-// FUNCIONES DE ACTUALIZACIÓN VISUAL
-// ===============================
+// Estados finales
+const ACCEPT = "q4";
+const REJECT = "qx";
 
+// Tabla de transición del AFD → MT
+const delta = {
+    q0: { "0": "q1", "1": "q1", "2": "q1", "3": "q1", "4": "q1", "5": "q1", "6": "q1", "7": "q1", "8": "q1", "8": "q1", "9": "q1" },
+    q1: { "0": "q2", "1": "q2", "2": "q2", "3": "q2", "4": "q2", "5": "q2", "6": "q2", "7": "q2", "8": "q2", "9": "q2" },
+    q2: { "0": "q3", "1": "q3", "2": "q3", "3": "q3", "4": "q3", "5": "q3", "6": "q3", "7": "q3", "8": "q3", "9": "q3" },
+    q3: { "0": ACCEPT, "1": ACCEPT, "2": ACCEPT, "3": ACCEPT, "4": ACCEPT, "5": ACCEPT, "6": ACCEPT, "7": ACCEPT, "8": ACCEPT, "9": ACCEPT },
+    q4: {}, // Aceptación
+    qx: {} // Rechazo
+};
+
+// ---------------------------
+// RENDER DE LA CINTA
+// ---------------------------
 function renderTape() {
     const tapeDiv = document.getElementById("tape");
-    const headDiv = document.getElementById("headPosition");
-
     tapeDiv.innerHTML = "";
-    headDiv.innerHTML = "";
 
-    tape.forEach((symbol, i) => {
+    for (let i = 0; i < tape.length; i++) {
         const cell = document.createElement("div");
-        cell.textContent = symbol;
-        tapeDiv.appendChild(cell);
+        cell.className = "cell";
+        cell.textContent = tape[i];
 
-        const headCell = document.createElement("div");
-        headCell.textContent = i === head ? "▲" : "";
-        headDiv.appendChild(headCell);
-    });
+        if (i === head) cell.classList.add("head");
+
+        tapeDiv.appendChild(cell);
+    }
 
     document.getElementById("currentState").textContent = currentState;
 }
 
-// ===============================
-// PROCESO DE LA MT
-// ===============================
+// ---------------------------
+// CARGAR LA CINTA
+// ---------------------------
+function loadTape() {
+    const input = document.getElementById("inputString").value;
 
-function step() {
-    if (currentState === acceptState) {
-        document.getElementById("result").textContent = "✔ Cadena ACEPTADA";
-        return;
-    }
-    if (currentState === rejectState) {
-        document.getElementById("result").textContent = "✘ Cadena RECHAZADA";
-        return;
-    }
+    tape = input.split("");
+    tape.push("_"); // blanco final
+    head = 0;
+    currentState = "q0";
+    finished = false;
 
-    const symbol = tape[head] || "_";
-
-    const transition = transitionFunction[currentState][symbol];
-
-    if (!transition) {
-        currentState = rejectState;
-        renderTape();
-        return;
-    }
-
-    const [write, move, next] = transition;
-
-    // MT nunca cambia lo que lee → write === symbol
-    tape[head] = write;
-
-    if (move === "R") head++;
-    if (move === "N") head = head;
-
-    currentState = next;
+    document.getElementById("result").textContent = "—";
 
     renderTape();
 }
 
+// ---------------------------
+// UN PASO DE EJECUCIÓN
+// ---------------------------
+function step() {
+    if (finished) return;
+
+    const symbol = tape[head];
+
+    // Si llegó a blanco y no está en aceptación → rechazar
+    if (symbol === "_") {
+        currentState = (currentState === ACCEPT) ? ACCEPT : REJECT;
+        finished = true;
+        updateResult();
+        return;
+    }
+
+    const rules = delta[currentState];
+
+    if (!rules || !rules[symbol]) {
+        currentState = REJECT;
+        finished = true;
+        updateResult();
+        return;
+    }
+
+    // Aplicar transición
+    currentState = rules[symbol];
+
+    // Mover cabeza a la derecha
+    head++;
+
+    renderTape();
+
+    // Ver si terminó
+    if (currentState === ACCEPT || currentState === REJECT) {
+        finished = true;
+        updateResult();
+    }
+}
+
+// ---------------------------
+// ACTUALIZAR RESULTADO
+// ---------------------------
+function updateResult() {
+    const out = document.getElementById("result");
+
+    if (currentState === ACCEPT) out.textContent = "✔ CADENA ACEPTADA";
+    else out.textContent = "✘ CADENA RECHAZADA";
+}
+
+// ---------------------------
+// EJECUTAR AUTOMÁTICO
+// ---------------------------
 function run() {
-    running = true;
+    if (finished) return;
+
     const interval = setInterval(() => {
-        if (!running || currentState === acceptState || currentState === rejectState) {
+        if (finished) {
             clearInterval(interval);
+            return;
         }
         step();
     }, 600);
 }
 
+// ---------------------------
+// REINICIAR
+// ---------------------------
 function reset() {
     tape = [];
     head = 0;
-    currentState = startState;
-    running = false;
+    currentState = "q0";
+    finished = false;
+    document.getElementById("tape").innerHTML = "";
     document.getElementById("result").textContent = "—";
-    renderTape();
+    document.getElementById("currentState").textContent = "q0";
 }
 
-// ===============================
-// CARGAR CINTA
-// ===============================
-
-document.getElementById("loadBtn").onclick = () => {
-    const input = document.getElementById("inputString").value.trim();
-
-    tape = input.split("");  // convierte la cadena en arreglo
-    head = 0;
-    currentState = startState;
-    running = false;
-    document.getElementById("result").textContent = "—";
-    renderTape();
-};
-
-document.getElementById("stepBtn").onclick = step;
-document.getElementById("runBtn").onclick = run;
-document.getElementById("resetBtn").onclick = reset;
-
-// inicializar vacío
-renderTape();
-
+// ---------------------------
+// EVENTOS
+// ---------------------------
+document.getElementById("loadButton").onclick = loadTape;
+document.getElementById("stepButton").onclick = step;
+document.getElementById("runButton").onclick = run;
+document.getElementById("resetButton").onclick = reset;

@@ -76,7 +76,7 @@ Estado de rechazo: qx​.
 
 Tabla de transiciones 
 
-<img width="781" height="639" alt="image" src="https://github.com/user-attachments/assets/f2c8ef66-6b38-4c93-b35d-02f5103bab33" />
+<img width="780" height="526" alt="image" src="https://github.com/user-attachments/assets/da452091-4139-44d4-b559-a9a26bca79ad" />
 
 Observaciones:
 - En q4 si se encuentra un quinto dígito la MT entra en q_x y para inmediatamente (move = N), porque no queremos consumir más ni mover hacia la derecha antes de declarar el rechazo.
@@ -94,7 +94,7 @@ Todas las transiciones que producen aceptación o rechazo hacen move = N (no mov
 
 Diagrama de transición
 
-<img width="570" height="586" alt="image" src="https://github.com/user-attachments/assets/9ff13d82-710a-4857-96ac-c022c39a54d3" />
+<img width="465" height="530" alt="Diagrama MT drawio" src="https://github.com/user-attachments/assets/8d46635f-9518-4a7b-b9c2-ed6323778bab" />
 
 # URL del proyecto final de la MT:
 https://samuelzuleta1.github.io/Proyecto-Final-MT-GLF/

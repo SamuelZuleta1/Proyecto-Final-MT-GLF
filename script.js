@@ -54,7 +54,10 @@ function renderTape() {
         tapeDiv.appendChild(cell);
     }
     
-    document.getElementById("currentState").textContent = currentState;
+    // Actualizar estado con clases dinámicas
+    const stateElement = document.getElementById("currentState");
+    stateElement.textContent = currentState;
+    stateElement.className = "state-info " + currentState;
 }
 
 // ---------------------------
@@ -162,7 +165,31 @@ function run() {
 }
 
 // ---------------------------
-// REINICIAR
+// REINICIAR (vuelve a aplicar proceso sin borrar la cadena)
+// ---------------------------
+function reiniciar() {
+    tape = [];
+    head = 0;
+    currentState = "q0";
+    finished = false;
+    
+    const input = document.getElementById("inputString").value;
+    
+    if (input.length === 0) {
+        alert("Por favor ingresa una cadena primero");
+        return;
+    }
+    
+    tape = input.split("");
+    tape.push("_"); // blanco final
+    
+    document.getElementById("result").textContent = "—";
+    document.getElementById("result").style.color = "black";
+    renderTape();
+}
+
+// ---------------------------
+// LIMPIAR (borra todo incluyendo la cadena)
 // ---------------------------
 function reset() {
     tape = [];
@@ -173,7 +200,9 @@ function reset() {
     document.getElementById("tape").innerHTML = "";
     document.getElementById("result").textContent = "—";
     document.getElementById("result").style.color = "black";
-    document.getElementById("currentState").textContent = "q0";
+    const stateElement = document.getElementById("currentState");
+    stateElement.textContent = "q0";
+    stateElement.className = "state-info q0";
     document.getElementById("inputString").value = "";
 }
 
@@ -183,4 +212,5 @@ function reset() {
 document.getElementById("loadButton").onclick = loadTape;
 document.getElementById("stepButton").onclick = step;
 document.getElementById("runButton").onclick = run;
-document.getElementById("resetButton").onclick = reset;
+document.getElementById("resetButton").onclick = reiniciar;
+document.getElementById("clearButton").onclick = reset;

@@ -26,7 +26,7 @@ Expresión regular : /d{4}  .Donde \d representa cualquier dígito decimal del c
 El lenguaje reconoce un PIN de 4 dígitos (exactamente)
 
 ¿Por qué se escogió esta expresión regular? 
-Este regex fue elegido porque es fácil de manejar, no tiene un AFD tan extenso y su 4-tupla es simple.
+Este regex fue elegido porque es fácil de manejar, no tiene un AFD tan extenso y su 5-tupla es simple.
 
 # Construcción del AFD
 El autómata finito determinista (AFD) que reconoce el lenguaje \d{4} se compone de la siguiente 4-tupla:

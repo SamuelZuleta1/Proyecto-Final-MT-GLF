@@ -1,28 +1,140 @@
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador de Máquina de Turing — AFD para \\d{4}</title>
+    <title>Simulador de Máquina de Turing — AFD </title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-<h1>Simulador de Máquina de Turing — AFD para \\d{4}</h1>
-<div class="container">
-    <input type="text" id="inputString" placeholder="Ingresa una cadena (ej: 1234)">
-    <button id="loadButton">Cargar Cinta</button>
-    <h2>Cinta</h2>
-    <div id="tape" class="tape"></div>
-    <div class="controls">
-        <button id="stepButton">Paso</button>
-        <button id="runButton">Ejecutar</button>
-        <button id="resetButton">Reiniciar</button>
-    </div>
-    <p><strong>Estado actual:</strong> <span id="currentState">q0</span></p>
-    <p><strong>Resultado:</strong> <span id="result">—</span></p>
-</div>
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <div class="logo-section">
+                <div class="logo">
+                    <i class="fas fa-microchip"></i>
+                    <span>MT Simulator</span>
+                </div>
+                <div class="navbar-logos">
+                    <img src="img/LogoUTP.png" alt="Logo UTP" class="navbar-logo">
+                    <img src="img/ISC.png" alt="Logo ISC" class="navbar-logo">
+                </div>
+            </div>
+            <nav class="nav-links">
+                <a href="#inicio">Inicio</a>
+                <a href="#simulador">Simulador</a>
+                <a href="#info">Información</a>
+                
+            </nav>
+        </div>
+    </header>
 
-<!-- EL SCRIPT DEBE IR AQUÍ, AL FINAL -->
-<script src="script.js"></script>
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="overlay"></div>
+        <div class="hero-content">
+            <h1>Simulador de Máquina de Turing</h1>
+            <p>Explora el funcionamiento de una Máquina de Turing que valida exactamente 4 dígitos</p>
+            <button class="btn-primary" onclick="document.getElementById('simulador').scrollIntoView({behavior:'smooth'})">
+                Ir al Simulador
+            </button>
+        </div>
+    </section>
+
+    <!-- Simulador Section -->
+    <section class="section" id="simulador">
+        <div class="container">
+            <h2>🔬 Panel de Simulación</h2>
+            <div class="simulator-container glass">
+                <div class="input-section">
+                    <label for="inputString">Ingresa una cadena a validar:</label>
+                    <input type="text" id="inputString" placeholder="Ejemplo: 1234" maxlength="20">
+                    <small style="color: #999; display: block; margin-top: 8px;">
+                        La máquina aceptará exactamente 4 dígitos (0-9).<br>
+                        La máquina no acepta cadenas vacías ni caracteres no numéricos.
+                    </small>
+                </div>
+
+                <div class="controls">
+                    <button id="loadButton" class="btn-primary">Cargar Cinta</button>
+                    <button id="resetButton" class="btn-secondary">Reiniciar</button>
+                </div>
+
+                <div class="tape-display">
+                    <h3>📝 Cinta</h3>
+                    <div id="tape" class="tape"></div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div class="state-display">
+                        <h3>⚙️ Estado Actual</h3>
+                        <div class="state-info">
+                            <span id="currentState">q0</span>
+                        </div>
+                    </div>
+
+                    <div class="state-display">
+                        <h3>📊 Resultado</h3>
+                        <div class="result-message" id="result">—</div>
+                    </div>
+                </div>
+
+                <div class="controls" style="margin-top: 30px;">
+                    <button id="stepButton" class="btn-primary">⏯️ Paso a Paso</button>
+                    <button id="runButton" class="btn-primary">▶️ Ejecutar</button>
+                    <button id="clearButton" class="btn-primary">🗑️ Limpiar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="section alt" id="info">
+        <div class="container">
+            <h2>ℹ️ Cómo Funciona</h2>
+            <div class="cards">
+                <div class="card glass">
+                    <div class="icon">📋</div>
+                    <h3>Carga tu Entrada</h3>
+                    <p>Ingresa una cadena de dígitos en el campo de entrada y presiona "Cargar Cinta"</p>
+                </div>
+                <div class="card glass">
+                    <div class="icon">⚙️</div>
+                    <h3>Visualiza Estados</h3>
+                    <p>Observa cómo la máquina transiciona entre estados (q0, q1, q2, q3, q4)</p>
+                </div>
+                <div class="card glass">
+                    <div class="icon">✅</div>
+                    <h3>Obtén Resultado</h3>
+                    <p>La máquina aceptará solo cadenas con exactamente 4 dígitos
+                      y sin caracteres no numéricos.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Simulador de Máquina de Turing - AFD para 4 dígitos</p>
+            <div class="social-icons">
+                <a href="https://github.com/SamuelZuleta1/Proyecto-Final-MT-GLF/tree/main" title="GitHub" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-github"></i>
+                </a>
+                <div class="navbar-logos">
+                    <img src="img/LogoUTP.png" alt="Logo UTP" class="navbar-logo">
+                    <img src="img/ISC.png" alt="Logo ISC" class="navbar-logo">
+                </div>
+
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>

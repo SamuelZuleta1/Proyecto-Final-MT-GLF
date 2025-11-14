@@ -14,7 +14,7 @@
 - Ivanna Ramírez Morales.
 
 # Presentado a:
-Ingeriero Felipe Gutiérrez Isaza 
+Ingeniero Felipe Gutiérrez Isaza 
 
 # Lugar y fecha
 Pereira, Risaralda. 28/11/2025 

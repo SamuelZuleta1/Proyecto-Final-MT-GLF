@@ -1,3 +1,4 @@
+
 // ---------------------------
 // DEFINICIÓN DE LA MT
 // ---------------------------
@@ -68,6 +69,13 @@ function loadTape() {
     
     if (input.length === 0) {
         alert("Por favor ingresa una cadena");
+        return;
+    }
+    
+    // Validar que la entrada solo contenga dígitos (0-9)
+    // El símbolo _ es exclusivo del espacio en blanco de la cinta
+    if (!/^[0-9]+$/.test(input)) {
+        alert("Error: La cadena solo puede contener dígitos (0-9). El símbolo '_' es exclusivo del espacio en blanco de la cinta.");
         return;
     }
     
@@ -214,3 +222,30 @@ document.getElementById("stepButton").onclick = step;
 document.getElementById("runButton").onclick = run;
 document.getElementById("resetButton").onclick = reiniciar;
 document.getElementById("clearButton").onclick = reset;
+
+// ---------------------------
+// MENÚ HAMBURGUESA
+// ---------------------------
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+menuToggle.addEventListener("click", () => {
+    menuToggle.classList.toggle("active");
+    navLinks.classList.toggle("active");
+});
+
+// Cerrar menú al hacer clic en un enlace
+navLinks.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+        menuToggle.classList.remove("active");
+        navLinks.classList.remove("active");
+    });
+});
+
+// Cerrar menú al hacer clic fuera de él
+document.addEventListener("click", (e) => {
+    if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+        menuToggle.classList.remove("active");
+        navLinks.classList.remove("active");
+    }
+});

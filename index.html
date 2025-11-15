@@ -23,11 +23,15 @@
                     <img src="img/ISC.png" alt="Logo ISC" class="navbar-logo">
                 </div>
             </div>
-            <nav class="nav-links">
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="nav-links" id="navLinks">
                 <a href="#inicio">Inicio</a>
                 <a href="#simulador">Simulador</a>
                 <a href="#info">Información</a>
-                
             </nav>
         </div>
     </header>
@@ -95,6 +99,16 @@
     <section class="section alt" id="info">
         <div class="container">
             <h2>ℹ️ Cómo Funciona</h2>
+            <div class="diagram-container">
+                <img src="img/Diagrama.png" alt="Diagrama de la Máquina de Turing" class="diagram-image"> 
+            </div>
+            <div class="explanation-text">
+                <p>La Máquina de Turing lee los números de izquierda a derecha, contando uno por uno. 
+                    Si encuentra exactamente 4 dígitos y luego un espacio vacío (_), acepta la cadena y se detiene.
+                    Pero si encuentra menos de 4 dígitos, más de 4 dígitos, o cualquier letra o símbolo extraño, 
+                    rechaza la cadena inmediatamente y para. Es como un inspector muy estricto que solo aprueba cadenas 
+                    con exactamente 4 números, nada más, nada menos.</p>
+            </div>
             <div class="cards">
                 <div class="card glass">
                     <div class="icon">📋</div>
@@ -104,7 +118,7 @@
                 <div class="card glass">
                     <div class="icon">⚙️</div>
                     <h3>Visualiza Estados</h3>
-                    <p>Observa cómo la máquina transiciona entre estados (q0, q1, q2, q3, q4, qx)</p>
+                    <p>Observa cómo la máquina transiciona entre estados (q0, q1, q2, q3, q4)</p>
                 </div>
                 <div class="card glass">
                     <div class="icon">✅</div>
